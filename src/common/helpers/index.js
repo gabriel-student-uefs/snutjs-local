@@ -69,7 +69,7 @@ class Helpers {
 
   async findTestFiles(directory) {
     const options = {
-      ignore: "node_modules",
+      ignore: ["**/node_modules/**"],
       cwd: directory,
       windowsPathsNoEscape: IS_WIN_SO,
       absolute: true,

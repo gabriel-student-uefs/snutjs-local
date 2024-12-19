@@ -41,12 +41,15 @@ class AnalyzeService {
         const testAst = astService.parseFileToAst(tf);
         const testInfo = astService.getTestInfo(testAst);
         return detectors.map((detector) => {
-          return {
-            file: helpers.getPathAfterPublic(tf),
+          const relativeFilePath = path.relative(directory, tf);
+          const result ={
+            file: relativeFilePath,
             type: detector.name.replace("detect", ""),
             smells: detector(testAst),
-            info: testInfo,
+            itCount: testInfo.itCount,
+            describeCount: testInfo.describeCount,
           };
+          return result;
         });
       });
       return astFiles.flat();
