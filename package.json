@@ -1,0 +1,43 @@
+{
+  "name": "mizu-js-test-smell-detector-api",
+  "version": "1.0.0",
+  "description": "a js test smell detector api",
+  "main": "server.js",
+  "author": "jhonatanmizu",
+  "license": "MIT",
+  "scripts": {
+    "start": "pm2 start process.yml -i max -f --no-daemon",
+    "start:dev": "node --watch src/server.js",
+    "lint": "yarn run eslint src/*",
+    "test": "vitest run --config  ./vitest.config.js test/",
+    "test:watch": "vitest --config  ./vitest.config.js test/",
+    "test:coverage": "vitest run --config  ./vitest.config.js --coverage test/"
+  },
+  "type": "module",
+  "dependencies": {
+    "@babel/parser": "^7.24.5",
+    "@babel/traverse": "^7.25.6",
+    "@babel/types": "^7.25.0",
+    "@fastify/cors": "^10.0.1",
+    "@fastify/helmet": "^12.0.1",
+    "@fastify/swagger": "^9.2.0",
+    "@fastify/swagger-ui": "^5.1.0",
+    "@json2csv/plainjs": "^7.0.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "fastify": "^5.0.0",
+    "glob": "^11.0.0",
+    "pino-pretty": "^11.2.2",
+    "pm2": "^5.4.2",
+    "rimraf": "^6.0.1"
+  },
+  "repository": "https://github.com/Jhonatanmizu/snutsjs.git",
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@vitest/coverage-v8": "^2.0.5",
+    "eslint": "9.x",
+    "git-commit-msg-linter": "^5.0.8",
+    "globals": "^15.8.0",
+    "vitest": "^2.0.5"
+  }
+}
