@@ -4,4 +4,4 @@ public
 ./public/*
 public/*
 coverage
-./src/project/*
+/src/project/*

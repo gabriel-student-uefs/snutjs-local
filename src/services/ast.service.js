@@ -133,7 +133,7 @@ class AstService {
         t.isMemberExpression(node?.expression.callee) &&
         assertMethods.includes(
           node?.expression.callee.name ||
-            node?.expression?.callee?.object?.callee?.name
+          node?.expression?.callee?.object?.callee?.name
         )
       );
     } catch (error) {

@@ -3,6 +3,25 @@ import helpers from "../common/helpers/index.js";
 import analyzeService from "../services/analyze.service.js";
 import { Parser } from "@json2csv/plainjs";
 const csvParser = new Parser({});
+
+const splitFilteredResults = (filteredResult) => {
+  let result = [];
+
+  filteredResult.forEach(item => {
+    item.smells.forEach(smell => {
+      result.push({
+        file: item.file,
+        type: item.type,
+        smells: [smell],
+        itCount: item.itCount,
+        describeCount: item.describeCount
+      });
+    });
+  });
+
+  return result;
+}
+
 class AnalyzeController {
   async fetch(request, reply) {
     const data = detectors.map((detector) =>
@@ -85,7 +104,17 @@ class AnalyzeController {
         (re) => !!re.smells && re.smells.length > 0
       );
 
-      const csv = csvParser.parse(filteredResult);
+      const output = splitFilteredResults(filteredResult);
+      // // console.log("filteredResult:", filteredResult);
+      // filteredResult.forEach((element) => {
+      //   if (element.smells) {
+      //     element.smells = element.smells.map((smell) => {
+      //       console.log(smell)
+      //     });
+      //   }
+      // });
+
+      const csv = csvParser.parse(output);
       reply.header(
         "Content-Type",
         "text/csv",
