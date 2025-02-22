@@ -105,14 +105,6 @@ class AnalyzeController {
       );
 
       const output = splitFilteredResults(filteredResult);
-      // // console.log("filteredResult:", filteredResult);
-      // filteredResult.forEach((element) => {
-      //   if (element.smells) {
-      //     element.smells = element.smells.map((smell) => {
-      //       console.log(smell)
-      //     });
-      //   }
-      // });
 
       const csv = csvParser.parse(output);
       reply.header(
